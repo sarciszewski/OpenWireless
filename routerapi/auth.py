@@ -154,7 +154,7 @@ class Auth:
             with open(self.password_filename, 'r') as f:
                 hashed = f.read().strip()
             b_valid = bytearray(hashed)
-            b_guess = bytearray(pbkdf2.crypt(candidate, unicode(hashed)))
+            b_guess = bytearray(pbkdf2.crypt(candidate, unicode(hashed)), 'utf-8')
             if constant_time_compare(b_valid, b_guess):
                 return True
             else:
